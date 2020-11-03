@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CatTrackerDemo\CatTrackerDemo.csproj" />
+    <ProjectReference Include="..\CatTrackerWebUILibrary\CatTrackerWebUILibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>
