@@ -17,21 +17,7 @@
         }
         else
         {
-            <ScrollView>
-                @if (TrackerState.Results.Length > 0)
-                {
-                    <StackLayout>
-                        @foreach (var result in TrackerState.Results)
-                        {
-                            <Label Padding="10" Text="@result" />
-                        }
-                    </StackLayout>
-                }
-                else
-                {
-                    <Label Text="Sorry, no cats match" FontSize="30" />
-                }
-            </ScrollView>
+            <CatResults Results="TrackerState.Results" />
         }
 
     </StackLayout>

@@ -1,0 +1,21 @@
+﻿@inject TrackerState TrackerState
+
+<ScrollView>
+    @if (Results.Length > 0)
+    {
+        <StackLayout Margin="10">
+            @foreach (var result in Results)
+            {
+                <Label Padding="10" FontSize="25" Text="@result" />
+            }
+        </StackLayout>
+    }
+    else
+    {
+        <Label Text="Sorry, no cats match" FontSize="30" />
+    }
+</ScrollView>
+
+@code {
+    [Parameter] public string[] Results { get; set; }
+}
