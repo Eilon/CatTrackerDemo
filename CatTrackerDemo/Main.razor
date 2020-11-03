@@ -9,13 +9,11 @@
             <Button Text="Track again" OnClick="@TrackerState.Reset" VerticalOptions="LayoutOptions.Center" Padding="10" />
         </StackLayout>
 
-        @if (TrackerState.Results == null)
-        {
-            <BlazorWebView VerticalOptions="LayoutOptions.FillAndExpand">
-                <CatTrackerDemo.WebUI.App />
-            </BlazorWebView>
-        }
-        else
+        <BlazorWebView IsVisible="TrackerState.Results == null" VerticalOptions="LayoutOptions.FillAndExpand">
+            <CatTrackerDemo.WebUI.App />
+        </BlazorWebView>
+
+        @if (TrackerState.Results != null)
         {
             <CatResults Results="TrackerState.Results" />
         }
