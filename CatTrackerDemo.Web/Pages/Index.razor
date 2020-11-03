@@ -1,7 +1,12 @@
 ﻿@page "/"
+@inject NavigationManager NavigationManager 
 
-<h1>Cat Tracker!</h1>
+<CatTracker OnTrackComplete="OnTrackComplete" />
 
-Welcome to Cat Tracker.
-
-<CatTracker />
+@code
+{
+    private void OnTrackComplete(string[] results)
+    {
+        NavigationManager.NavigateTo($"/trackresults/{string.Join(',', results)}");
+    }
+}

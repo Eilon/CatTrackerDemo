@@ -11,7 +11,7 @@ namespace CatTrackerDemo.Windows
         public static void Main()
         {
             var app = new System.Windows.Application();
-            app.Run(new MainWindow());
+            app.Run(new MainWindow() { Title = "Cat tracker" });
         }
 
         public MainWindow()

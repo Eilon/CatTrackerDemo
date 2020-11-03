@@ -1,13 +1,35 @@
 ﻿<div class="my-component">
-    Track my cat
+    Track cats
 
-    <div>
-        Breed: <input type="text" />
-    </div>
-    <div>
-        Color: <input type="text" />
-    </div>
-    <div>
-        <button type="submit">Track</button>
-    </div>
+    <EditForm Model="@trackerModel" OnValidSubmit="@HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="inputField">
+            Breed: <InputText id="breed" @bind-Value="trackerModel.Breed" />
+        </div>
+        <div class="inputField">
+            Color: <InputText id="color" @bind-Value="trackerModel.Color" />
+        </div>
+        <div class="inputField rightside">
+            <button type="submit">Track</button>
+        </div>
+    </EditForm>
+
 </div>
+
+
+@code {
+    private CatTrackerModel trackerModel = new CatTrackerModel();
+
+    [Parameter] public EventCallback<string[]> OnTrackComplete { get; set; }
+
+    private async Task HandleValidSubmit()
+    {
+        // Find the cats
+        var results = FancyCatTracker.FindCats(trackerModel.Breed, trackerModel.Color);
+
+        // Let the caller know
+        await OnTrackComplete.InvokeAsync(results);
+    }
+}

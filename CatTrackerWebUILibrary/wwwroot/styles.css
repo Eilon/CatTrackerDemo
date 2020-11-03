@@ -6,4 +6,15 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    font-size: 20px;
+}
+
+.inputField
+{
+    padding: 10px;
+}
+
+.rightside
+{
+    text-align: right;
 }

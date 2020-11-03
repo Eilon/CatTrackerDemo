@@ -1,7 +1,12 @@
 @page "/"
+@inject TrackerState TrackerState 
 
-<h1>Cat Tracker!</h1>
+<CatTracker OnTrackComplete="OnTrackComplete" />
 
-Welcome to Cat Tracker.
-
-<CatTracker />
+@code
+{
+    private void OnTrackComplete(string[] results)
+    {
+        TrackerState.SetResults(results);
+    }
+}

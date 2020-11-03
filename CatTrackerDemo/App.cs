@@ -19,7 +19,7 @@ namespace CatTrackerDemo
                     services.AddBlazorHybrid();
 
                     // Register app-specific services
-                    services.AddSingleton<CounterState>();
+                    services.AddSingleton<TrackerState>();
                 })
                 .UseWebRoot("wwwroot");
 

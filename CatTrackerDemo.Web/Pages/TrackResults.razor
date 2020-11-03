@@ -1,0 +1,27 @@
+﻿@page "/trackresults/{results}"
+@page "/trackresults"
+
+<h1>Tracker results</h1>
+
+@if (!string.IsNullOrEmpty(Results))
+{
+    <ul>
+        @foreach (var result in Results.Split(','))
+        {
+            <li>
+                @result
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <div style="font-size: 30px">
+        Sorry, no cats match.
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string Results { get; set; }
+}

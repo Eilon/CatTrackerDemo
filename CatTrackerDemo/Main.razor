@@ -1,16 +1,38 @@
-﻿@inject CounterState CounterState
+﻿@inject TrackerState TrackerState
 
 <ContentView>
     <StackLayout>
 
         <StackLayout Margin="new Thickness(20)" Orientation="StackOrientation.Horizontal">
-            <Label Text="@($"Hello, World! {CounterState.CurrentCount}")" FontSize="40" HorizontalOptions="LayoutOptions.StartAndExpand" />
-            <Button Text="Increment" OnClick="@CounterState.IncrementCount" VerticalOptions="LayoutOptions.Center" Padding="10" />
+            <Label Text="Cat Tracker 9000!" FontSize="40" HorizontalOptions="LayoutOptions.StartAndExpand" />
+
+            <Button Text="Track again" OnClick="@TrackerState.Reset" VerticalOptions="LayoutOptions.Center" Padding="10" />
         </StackLayout>
 
-        <BlazorWebView VerticalOptions="LayoutOptions.FillAndExpand">
-            <CatTrackerDemo.WebUI.App />
-        </BlazorWebView>
+        @if (TrackerState.Results == null)
+        {
+            <BlazorWebView VerticalOptions="LayoutOptions.FillAndExpand">
+                <CatTrackerDemo.WebUI.App />
+            </BlazorWebView>
+        }
+        else
+        {
+            <ScrollView>
+                @if (TrackerState.Results.Length > 0)
+                {
+                    <StackLayout>
+                        @foreach (var result in TrackerState.Results)
+                        {
+                            <Label Padding="10" Text="@result" />
+                        }
+                    </StackLayout>
+                }
+                else
+                {
+                    <Label Text="Sorry, no cats match" FontSize="30" />
+                }
+            </ScrollView>
+        }
 
     </StackLayout>
 </ContentView>
@@ -19,11 +41,11 @@
 @code {
     protected override void OnInitialized()
     {
-        CounterState.StateChanged += StateHasChanged;
+        TrackerState.StateChanged += StateHasChanged;
     }
 
     public void Dispose()
     {
-        CounterState.StateChanged -= StateHasChanged;
+        TrackerState.StateChanged -= StateHasChanged;
     }
 }
