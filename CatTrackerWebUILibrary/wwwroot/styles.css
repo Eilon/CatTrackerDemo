@@ -1,7 +1,9 @@
-﻿my-component {
-    border: 2px dashed red;
+﻿.my-component {
+    border: 2px dashed green;
     padding: 1em;
     margin: 1em 0;
-    background: url('background.png') no-repeat center center fixed;
+    background-image: url('background.png');
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
 }
