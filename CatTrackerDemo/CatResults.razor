@@ -6,16 +6,16 @@
         <StackLayout Margin="10">
             @foreach (var result in Results)
             {
-            <Label Padding="10" FontSize="25">
-                <Span Text="@result.Name" FontAttributes="FontAttributes.Bold" />
-                <Span Text=" (" />
-                <Span Text="@result.Breed" />
-                <Span Text=", " />
-                <Span Text="@result.Color" />
-                <Span Text=") " />
-                <Span Text="@result.Distance.ToString("#.##")" />
-                <Span Text="km away" />
-            </Label>
+                <Label Padding="10" FontSize="25">
+                    <Span Text="@result.Name" />
+                    <Span Text=" (" />
+                    <Span Text="@result.Breed" />
+                    <Span Text=", " />
+                    <Span Text="@result.Color" />
+                    <Span Text=") " />
+                    <Span Text="@result.Distance.ToString("#.##")" />
+                    <Span Text="km away" />
+                </Label>
             }
         </StackLayout>
     }
