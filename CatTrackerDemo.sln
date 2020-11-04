@@ -12,9 +12,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatTrackerDemo.Windows", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatTrackerDemo.macOS", "CatTrackerDemo.macOS\CatTrackerDemo.macOS.csproj", "{59F25F1A-FEFC-4705-9963-A51414059720}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatTrackerWebUILibrary", "CatTrackerWebUILibrary\CatTrackerWebUILibrary.csproj", "{03619938-8ACB-493A-98FE-4EDC465039A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatTrackerWebUILibrary", "CatTrackerWebUILibrary\CatTrackerWebUILibrary.csproj", "{03619938-8ACB-493A-98FE-4EDC465039A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatTrackerDemo.Web", "CatTrackerDemo.Web\CatTrackerDemo.Web.csproj", "{220A32AE-C69C-4568-A3F5-C14F47876C3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatTrackerDemo.Web", "CatTrackerDemo.Web\CatTrackerDemo.Web.csproj", "{220A32AE-C69C-4568-A3F5-C14F47876C3F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{03F83608-94FF-4D13-915B-7BFF724A797A}"
+	ProjectSection(SolutionItems) = preProject
+		Readme.md = Readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
