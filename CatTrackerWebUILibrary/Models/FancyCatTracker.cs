@@ -1,31 +1,40 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CatTrackerWebUILibrary.Models
 {
     public static class FancyCatTracker
     {
-        public static string[] FindCats(string breed, string color)
+        public static IList<CatTrackerResult> FindCats(string breed, string color)
         {
+            // If the breed length is 3, return no results
             if (breed.Length == 3)
             {
-                return new string[0];
+                return Array.Empty<CatTrackerResult>();
             }
 
             var count = new Random().Next(1, 20);
-            var results = new string[count];
+            var results = new CatTrackerResult[count];
             for (int i = 0; i < count; i++)
             {
+                results[i] = new CatTrackerResult
+                {
+                    // Use random values for these
+                    Name = GetName(),
+                    Distance = GetDistance(),
 
-                results[i] = $"{GetName()} located {GetDistance()}km away";
-
+                    // Echo the search query for these
+                    Breed = breed,
+                    Color = color,
+                };
             }
 
             return results;
         }
 
-        private static string GetDistance()
+        private static double GetDistance()
         {
-            return new Random().Next(0, 50).ToString();
+            return new Random().NextDouble() * 100;
         }
 
         private static string GetName()

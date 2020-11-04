@@ -5,7 +5,7 @@
 
 @code
 {
-    private void OnTrackComplete(string[] results)
+    private void OnTrackComplete(IList<CatTrackerResult> results)
     {
         TrackerState.SetResults(results);
     }

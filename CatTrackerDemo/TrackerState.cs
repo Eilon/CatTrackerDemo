@@ -1,10 +1,12 @@
-﻿using System;
+﻿using CatTrackerWebUILibrary.Models;
+using System;
+using System.Collections.Generic;
 
 namespace CatTrackerDemo
 {
     internal class TrackerState
     {
-        public string[] Results { get; private set; }
+        public IList<CatTrackerResult> Results { get; private set; }
 
         public void Reset()
         {
@@ -12,7 +14,7 @@ namespace CatTrackerDemo
             StateChanged?.Invoke();
         }
 
-        public void SetResults(string[] results)
+        public void SetResults(IList<CatTrackerResult> results)
         {
             Results = results;
             StateChanged?.Invoke();

@@ -1,15 +1,12 @@
-﻿@page "/trackresults/{results}"
-@page "/trackresults"
+﻿<h1>Tracker results</h1>
 
-<h1>Tracker results</h1>
-
-@if (!string.IsNullOrEmpty(Results))
+@if (Results.Any())
 {
     <ul>
-        @foreach (var result in Results.Split(','))
+        @foreach (var result in Results)
         {
             <li>
-                @result
+                <strong>@result.Name</strong> (@result.Breed, @result.Color) located @(result.Distance.ToString("#.##"))km away
             </li>
         }
     </ul>
@@ -23,5 +20,5 @@ else
 
 @code {
     [Parameter]
-    public string Results { get; set; }
+    public IList<CatTrackerResult> Results { get; set; }
 }

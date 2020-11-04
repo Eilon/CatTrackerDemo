@@ -1,12 +1,23 @@
 ﻿@page "/"
-@inject NavigationManager NavigationManager 
 
-<CatTracker OnTrackComplete="OnTrackComplete" />
+@if (resultsToShow == null)
+{
+    <CatTracker OnTrackComplete="OnTrackComplete" />
+}
+else
+{
+    <div>
+        <button type="submit" @onclick="() => resultsToShow = null">Track again</button>
+    </div>
+    <TrackResults Results="@resultsToShow" />
+}
 
 @code
 {
-    private void OnTrackComplete(string[] results)
+    IList<CatTrackerResult> resultsToShow;
+
+    private void OnTrackComplete(IList<CatTrackerResult> results)
     {
-        NavigationManager.NavigateTo($"/trackresults/{string.Join(',', results)}");
+        resultsToShow = results;
     }
 }

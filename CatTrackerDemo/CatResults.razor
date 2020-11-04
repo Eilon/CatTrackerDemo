@@ -1,12 +1,21 @@
 ﻿@inject TrackerState TrackerState
 
 <ScrollView>
-    @if (Results.Length > 0)
+    @if (Results.Any())
     {
         <StackLayout Margin="10">
             @foreach (var result in Results)
             {
-                <Label Padding="10" FontSize="25" Text="@result" />
+            <Label Padding="10" FontSize="25">
+                <Span Text="@result.Name" FontAttributes="FontAttributes.Bold" />
+                <Span Text=" (" />
+                <Span Text="@result.Breed" />
+                <Span Text=", " />
+                <Span Text="@result.Color" />
+                <Span Text=") " />
+                <Span Text="@result.Distance.ToString("#.##")" />
+                <Span Text="km away" />
+            </Label>
             }
         </StackLayout>
     }
@@ -17,5 +26,5 @@
 </ScrollView>
 
 @code {
-    [Parameter] public string[] Results { get; set; }
+    [Parameter] public IList<CatTrackerResult> Results { get; set; }
 }
