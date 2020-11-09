@@ -2,14 +2,29 @@
 
 @if (Results.Any())
 {
-    <ul>
-        @foreach (var result in Results)
-        {
-            <li>
-                <strong>@result.Name</strong> (@result.Breed, @result.Color) located @(result.Distance.ToString("#.##"))km away
-            </li>
-        }
-    </ul>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Picture</th>
+                <th>Name</th>
+                <th>Breed</th>
+                <th>Color</th>
+                <th>Distance</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var result in Results)
+            {
+                <tr>
+                    <td><img width="50" height="50" src="@result.ImagePath" alt="Picture of a cat named @result.Name" /></td>
+                    <td><strong>@result.Name</strong></td>
+                    <td>@result.Breed</td>
+                    <td>@result.Color</td>
+                    <td>@(result.Distance.ToString("#.##"))km</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 else
 {

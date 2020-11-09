@@ -1,22 +1,28 @@
-﻿@inject TrackerState TrackerState
+﻿@using System.IO
+@inject TrackerState TrackerState
+@inject Microsoft.Extensions.FileProviders.IFileProvider FileProvider
 
 <ScrollView>
     @if (Results.Any())
     {
         <StackLayout Margin="10">
             @foreach (var result in Results)
-            {
-                <Label Padding="10" FontSize="25">
-                    <Span Text="@result.Name" />
-                    <Span Text=" (" />
-                    <Span Text="@result.Breed" />
-                    <Span Text=", " />
-                    <Span Text="@result.Color" />
-                    <Span Text=") " />
-                    <Span Text="@result.Distance.ToString("#.##")" />
-                    <Span Text="km away" />
-                </Label>
-            }
+                {
+                    var imagePath = result.ImagePath;
+                    <StackLayout Orientation="StackOrientation.Horizontal" Padding="5" BackgroundColor="Color.LightGray">
+                        <Image BackgroundColor="Color.LightGray" WidthRequest="100" HeightRequest="100" Source="@GetImageStream(imagePath)" />
+                        <Label Padding="10" FontSize="25" VerticalOptions="LayoutOptions.Center">
+                            <Span Text="@result.Name" />
+                            <Span Text=" (" />
+                            <Span Text="@result.Breed" />
+                            <Span Text=", " />
+                            <Span Text="@result.Color" />
+                            <Span Text=") " />
+                            <Span Text="@result.Distance.ToString("#.##")" />
+                            <Span Text="km away" />
+                        </Label>
+                    </StackLayout>
+                }
         </StackLayout>
     }
     else
@@ -27,4 +33,15 @@
 
 @code {
     [Parameter] public IList<CatTrackerResult> Results { get; set; }
+
+    private ImageSource GetImageStream(string imagePath)
+    {
+        using (var fileStream = FileProvider.GetFileInfo(imagePath).CreateReadStream())
+        {
+            var memoryStream = new MemoryStream();
+            fileStream.CopyTo(memoryStream);
+            memoryStream.Position = 0; // reset stream for reading
+            return ImageSource.FromStream(() => memoryStream);
+        }
+    }
 }

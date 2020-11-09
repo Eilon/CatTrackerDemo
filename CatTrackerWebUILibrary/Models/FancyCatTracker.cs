@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace CatTrackerWebUILibrary.Models
 {
@@ -17,11 +18,14 @@ namespace CatTrackerWebUILibrary.Models
             var results = new CatTrackerResult[count];
             for (int i = 0; i < count; i++)
             {
+                var name = GetName();
+
                 results[i] = new CatTrackerResult
                 {
                     // Use random values for these
-                    Name = GetName(),
+                    Name = name,
                     Distance = GetDistance(),
+                    ImagePath = GetImagePath(seed: name.GetHashCode()),
 
                     // Echo the search query for these
                     Breed = breed,
@@ -30,6 +34,13 @@ namespace CatTrackerWebUILibrary.Models
             }
 
             return results;
+        }
+
+        private static string GetImagePath(int seed)
+        {
+            const int ImageCount = 20; // we have 20 cat images in the 'wwwroot/cats' folder
+            var imageIndex = new Random(seed).Next(ImageCount) + 1;
+            return string.Format(CultureInfo.InvariantCulture, "_content/CatTrackerWebUILibrary/cats/cat{0}.jpg", imageIndex);
         }
 
         private static double GetDistance()
