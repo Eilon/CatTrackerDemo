@@ -1,0 +1,35 @@
+﻿@inject TrackerState TrackerState
+
+<ContentView>
+    <StackLayout>
+
+        <StackLayout Margin="new Thickness(20)" Orientation="StackOrientation.Horizontal">
+            <Label Text="Cat Tracker 9000!" FontSize="40" HorizontalOptions="LayoutOptions.StartAndExpand" />
+
+            <Button Text="Track again" OnClick="@TrackerState.Reset" VerticalOptions="LayoutOptions.Center" Padding="10" />
+        </StackLayout>
+
+        <BlazorWebView IsVisible="TrackerState.Results == null" VerticalOptions="LayoutOptions.FillAndExpand">
+            <CatTrackerDemo.WebUI.App />
+        </BlazorWebView>
+
+        @if (TrackerState.Results != null)
+        {
+<CatResults Results="TrackerState.Results" />}
+
+    </StackLayout>
+</ContentView>
+
+
+@code
+{
+    protected override void OnInitialized()
+    {
+        TrackerState.StateChanged += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        TrackerState.StateChanged -= StateHasChanged;
+    }
+}

@@ -1,9 +1,6 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Hosting;
 using Microsoft.MobileBlazorBindings;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace CatTrackerDemo
@@ -34,7 +31,7 @@ namespace CatTrackerDemo
             var host = hostBuilder.Build();
 
             MainPage = new ContentPage { Title = "My Application" };
-            host.AddComponent<Main>(parent: MainPage);
+            host.AddComponent<HybridMain>(parent: MainPage);
         }
 
         protected override void OnStart()

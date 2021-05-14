@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace CatTrackerDemo
 {
-    internal class TrackerState
+    public class TrackerState
     {
         public IList<CatTrackerResult> Results { get; private set; }
 
