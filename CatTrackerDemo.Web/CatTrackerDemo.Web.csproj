@@ -5,6 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Shared\**" />
+    <Content Remove="Shared\**" />
+    <EmbeddedResource Remove="Shared\**" />
+    <None Remove="Shared\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CatTrackerDemo\CatTrackerDemo.csproj" />
     <ProjectReference Include="..\CatTrackerWebUILibrary\CatTrackerWebUILibrary.csproj" />
   </ItemGroup>
 
